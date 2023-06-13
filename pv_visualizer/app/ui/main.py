@@ -1,9 +1,9 @@
 from trame.app import dev
 from trame.ui.vuetify import SinglePageWithDrawerLayout
-from trame.widgets import vuetify, paraview, simput, html
+from trame.widgets import vuetify, paraview, simput, html,client
 
 from trame_simput import get_simput_manager
-
+from trame.app.file_upload import ClientFile
 from paraview import simple
 
 # from pv_visualizer import html as my_widgets
@@ -88,6 +88,27 @@ def initialize(server):
     ctrl.pxm_apply = simput_widget.apply
     ctrl.pxm_reset = simput_widget.reset
 
+    
+    @state.change("file_exchange")
+    def file_uploaded(file_exchange, **kwargs):
+        if file_exchange is None:
+            return
+
+        file = ClientFile(file_exchange)
+        file_name = file_exchange.get("name")
+        file_size = file_exchange.get("size")
+        file_time = file_exchange.get("lastModified")
+        file_mime_type = file_exchange.get("type")
+        file_binary_content = file_exchange.get(
+            "content"
+        )  # can be either list(bytes, ...), or bytes
+        with open(f"./vtu/{file_name}", 'wb') as f:
+            f.write(file.content)
+
+        
+    
+
+
     with SinglePageWithDrawerLayout(server, show_drawer=True, width=300) as layout:
         layout.root = simput_widget
 
@@ -116,6 +137,26 @@ def initialize(server):
                 **COMPACT,
             )
             vuetify.VSpacer()
+            #----------------上传按钮
+            vuetify.VFileInput(
+                v_model=("file_exchange", None),
+                outlined=True,
+                dense=True,
+                hide_input=True,
+                prepend_icon="mdi-upload",
+                style="max-width:40px",
+                title="上传文件到根目录"
+            )
+
+          
+            # -------
+
+            # vuetify.VSwitch(
+            # v_model=("$vuetify.lang.locales", {"zhHans":"zhHans"}),
+            # hide_details=True,
+            # dense=True,
+            #     )
+          
             with vuetify.VBtnToggle(
                 v_model=("active_controls", "files"),
                 **COMPACT,
@@ -132,6 +173,8 @@ def initialize(server):
         with layout.drawer as dr:
             dr.right = True
             # dr.expand_on_hover = True
+            # with vuetify.VBtn(icon=True):
+            #     vuetify.VIcon("mdi-upload")            
             for item in CONTROLS:
                 item.create_panel(server)
 
@@ -158,3 +201,4 @@ def initialize(server):
         # Footer
         # -----------------------------------------------------------------------------
         # layout.footer.hide()
+

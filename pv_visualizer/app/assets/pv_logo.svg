@@ -1,9 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" xmlns:xl="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
-  <g stroke="none" fill="none">
-    <path d="M 27.429806 108 L 0 108 L 22.570194 20 L 50 20 Z" fill="#ac262c"/>
-    <path d="M 66.429806 108 L 39 108 L 61.570194 20 L 89 20 Z" fill="#258e44"/>
-    <path d="M 105.4298 108 L 78 108 L 100.57019 20 L 128 20 Z" fill="#1c4678"/>
+<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1">
+
+ <g>
+  <title>Layer 1</title>
+  <g stroke="null" id="svg_1">
+   <g stroke="null" id="svg_2">
+    <g stroke="null" id="svg_3">
+     <polygon stroke="null" id="svg_4" fill="#0084FF" points="34.406185150146484,44.16753005981445 29.200000762939453,47.21734619140625 9,36.238006591796875 9,47.827308654785156 29.200000762939453,58.400001525878906 44.81855773925781,50.06383514404297 " class="st0"/>
+     <polygon stroke="null" id="svg_5" fill="#0084FF" points="24.20206069946289,17.125829696655273 29.200000762939453,14.685976028442383 49.400001525878906,25.665313720703125 49.400001525878906,14.279335975646973 29.200000762939453,3.299999237060547 13.789688110351562,11.636161804199219 " class="st0"/>
+    </g>
+    <g stroke="null" id="svg_6">
+     <polygon stroke="null" id="svg_7" fill="#0084FF" points="9,14.279335975646973 19.412368774414062,19.97232437133789 19.412368774414062,31.154983520507812 9,25.461994171142578 " class="st0"/>
+     <polygon stroke="null" id="svg_8" fill="#0084FF" points="24.20206069946289,22.412179946899414 24.20206069946289,33.798152923583984 49.400001525878906,47.21734619140625 49.400001525878906,36.238006591796875 49.400001525878906,36.034690856933594 " class="st0"/>
+    </g>
+   </g>
   </g>
+ </g>
 </svg>
