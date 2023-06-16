@@ -1,5 +1,5 @@
 from paraview import simple
-
+from trame.app.file_upload import ClientFile
 
 def initialize(server):
     state, ctrl = server.state, server.controller
@@ -26,6 +26,23 @@ def initialize(server):
             state.active_proxy_source_id = active_source.GetGlobalIDAsString()
             rep = simple.GetRepresentation(proxy=active_source, view=active_view)
             state.active_proxy_representation_id = rep.GetGlobalIDAsString()
+
+        
+    @state.change("file_exchange")
+    def file_uploaded(file_exchange, **kwargs):
+        if file_exchange is None:
+            return
+
+        file = ClientFile(file_exchange)
+        file_name = file_exchange.get("name")
+        file_size = file_exchange.get("size")
+        file_time = file_exchange.get("lastModified")
+        file_mime_type = file_exchange.get("type")
+        file_binary_content = file_exchange.get(
+            "content"
+        )  # can be either list(bytes, ...), or bytes
+        with open(f"./vtu/{file_name}", 'wb') as f:
+            f.write(file.content)
 
     # Initialize state values
     update_active_proxies()

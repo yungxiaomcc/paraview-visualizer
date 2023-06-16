@@ -3,8 +3,8 @@ from trame.ui.vuetify import SinglePageWithDrawerLayout
 from trame.widgets import vuetify, paraview, simput, html,client
 
 from trame_simput import get_simput_manager
-from trame.app.file_upload import ClientFile
 from paraview import simple
+from datetime import datetime
 
 # from pv_visualizer import html as my_widgets
 from pv_visualizer.app.assets import asset_manager
@@ -88,25 +88,10 @@ def initialize(server):
     ctrl.pxm_apply = simput_widget.apply
     ctrl.pxm_reset = simput_widget.reset
 
-    
-    @state.change("file_exchange")
-    def file_uploaded(file_exchange, **kwargs):
-        if file_exchange is None:
-            return
 
-        file = ClientFile(file_exchange)
-        file_name = file_exchange.get("name")
-        file_size = file_exchange.get("size")
-        file_time = file_exchange.get("lastModified")
-        file_mime_type = file_exchange.get("type")
-        file_binary_content = file_exchange.get(
-            "content"
-        )  # can be either list(bytes, ...), or bytes
-        with open(f"./vtu/{file_name}", 'wb') as f:
-            f.write(file.content)
-
-        
     
+
+  
 
 
     with SinglePageWithDrawerLayout(server, show_drawer=True, width=300) as layout:
@@ -191,10 +176,13 @@ def initialize(server):
                     mode="remote",
                     namespace="view",
                     style="width: 100%; height: 100%;",
+                    on_remote_image_capture=f"utils.download('visualizer_remote_capture.png', $event)",
+                    on_local_image_capture=f"utils.download('visualizer_local_capture.png', $event)"
                 )
                 ctrl.view_replace = html_view.replace_view
                 ctrl.view_update = html_view.update
                 ctrl.view_reset_camera = html_view.reset_camera
+                ctrl.view_capture_image = html_view.capture_image
                 ctrl.on_server_ready.add(ctrl.view_update)
 
         # -----------------------------------------------------------------------------

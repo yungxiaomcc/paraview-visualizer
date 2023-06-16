@@ -62,7 +62,7 @@ def create_panel(server):
                     v_text=("viewMode == 'local' ? 'mdi-rotate-3d' : 'mdi-image'",),
                 )
                 vuetify.VSwitch(
-                    v_model=("viewMode",),
+                    v_model=("viewMode","local"),
                     false_value="remote",
                     true_value="local",
                     classes="ma-0",
