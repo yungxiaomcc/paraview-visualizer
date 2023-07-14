@@ -1,5 +1,10 @@
 from paraview import simple
 from trame.app.file_upload import ClientFile
+from trame.app import get_server, asynchronous
+import asyncio
+
+animation_scene = simple.GetAnimationScene()
+time_keeper = animation_scene.TimeKeeper
 
 def initialize(server):
     state, ctrl = server.state, server.controller

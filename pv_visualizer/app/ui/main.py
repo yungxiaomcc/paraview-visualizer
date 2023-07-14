@@ -122,6 +122,39 @@ def initialize(server):
                 **COMPACT,
             )
             vuetify.VSpacer()
+            
+            #动画
+            vuetify.VTextField(
+                v_model=("time_value", 0),
+                disabled=True,
+                hide_details=True,
+                dense=True,
+                style="max-width: 50px",
+                classes="mx-2",
+            )
+            vuetify.VSlider(
+                v_model=("time", 0),
+                min=0,
+                max=("times", 1),
+                hide_details=True,
+                dense=True,
+                style="max-width: 200px",
+            )
+            vuetify.VCheckbox(
+                v_model=("play", False),
+                off_icon="mdi-play",
+                on_icon="mdi-stop",
+                hide_details=True,
+                dense=True,
+                classes="mx-2",
+            )
+            vuetify.VProgressLinear(
+                indeterminate=True,
+                absolute=True,
+                bottom=True,
+                active=("trame__busy",),
+            )
+
             #----------------上传按钮
             vuetify.VFileInput(
                 v_model=("file_exchange", None),
@@ -182,7 +215,8 @@ def initialize(server):
                 ctrl.view_replace = html_view.replace_view
                 ctrl.view_update = html_view.update
                 ctrl.view_reset_camera = html_view.reset_camera
-                ctrl.view_capture_image = html_view.capture_image
+                ctrl.view_update_geometry = html_view.update_geometry
+                ctrl.view_update_image = html_view.update_image
                 ctrl.on_server_ready.add(ctrl.view_update)
 
         # -----------------------------------------------------------------------------

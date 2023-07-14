@@ -26,11 +26,15 @@ def initialize(server):
     def add_prefix(file_path):
         return str(Path(os.path.join(args.data, file_path)).absolute())
 
+
     def load_file(files):
         active_change = False
         if isinstance(files, list):
             # time series
-            files_to_load = map(add_prefix, files)
+            files = [file.split('/')[1] for file in files]
+            files_to_load = list(map(add_prefix, files))
+            #files_to_load = [add_prefix(file.split('/')[1]) for file in files]
+            print('files:',files,files_to_load)
             reader = simple.OpenDataFile(files_to_load)
             simple.Show(reader)  # Should be deferred
         elif files.endswith(".pvsm"):
@@ -55,6 +59,11 @@ def initialize(server):
             data_to_load = add_prefix(files)
             reader = simple.OpenDataFile(data_to_load)
             simple.Show(reader)  # Should be deferred
+            animation_scene = simple.GetAnimationScene()
+            time_keeper = animation_scene.TimeKeeper
+            time_values = list(time_keeper.TimestepValues)
+            state.time_value = time_values[0]
+            state.times = len(time_values) - 1
 
         # Update state
         state.active_controls = pipeline_name
