@@ -59,11 +59,11 @@ def initialize(server):
             data_to_load = add_prefix(files)
             reader = simple.OpenDataFile(data_to_load)
             simple.Show(reader)  # Should be deferred
-            animation_scene = simple.GetAnimationScene()
-            time_keeper = animation_scene.TimeKeeper
-            time_values = list(time_keeper.TimestepValues)
-            state.time_value = time_values[0]
-            state.times = len(time_values) - 1
+            #animation_scene = simple.GetAnimationScene()
+            # time_keeper = animation_scene.TimeKeeper
+            # time_values = list(time_keeper.TimestepValues)
+            # state.time_value = time_values[0]
+            # state.times = len(time_values) - 1
 
         # Update state
         state.active_controls = pipeline_name

@@ -133,7 +133,7 @@ def initialize(server):
                 classes="mx-2",
             )
             vuetify.VSlider(
-                v_model=("time", 0),
+                v_model=("time_value", 0),
                 min=0,
                 max=("times", 1),
                 hide_details=True,

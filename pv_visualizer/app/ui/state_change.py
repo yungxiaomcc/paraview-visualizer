@@ -48,6 +48,10 @@ def initialize(server):
         )  # can be either list(bytes, ...), or bytes
         with open(f"./vtu/{file_name}", 'wb') as f:
             f.write(file.content)
+    
+    # @state.change('time_value')
+    # def update_time_model():
+    #     ...
 
     # Initialize state values
     update_active_proxies()

@@ -12,6 +12,13 @@ FILTERS = [
     "Clip",
     "Contour",
     "StreamTracer",
+    "Slice",
+    "MergeVectorComponents",
+    "Transform",
+    "Glyph",
+    "Gradient",
+    "TableToPoints",
+    "WarpByVector"
 ]
 
 
